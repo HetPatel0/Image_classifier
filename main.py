@@ -13,13 +13,15 @@ def load_model() :
     model = MobileNetV2(weights="imagenet")
     return model
 
-def preprocess_image(image) :
+
+def preprocess_image(image):
+
+    image = image.convert("RGB")  
     img = np.array(image)
-    img = cv2.resize(img,(224,224))
+    img = cv2.resize(img, (224, 224))
     img = preprocess_input(img)
-    img = np.expand_dims(img,axis=0)
+    img = np.expand_dims(img, axis=0)
     return img
- 
 
 def classify_image(model, image) :
     try: 
